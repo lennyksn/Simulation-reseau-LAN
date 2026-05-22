@@ -3,11 +3,11 @@
 
 typedef uint32_t mac;
 
-typedef uint32_t ip;
+typedef uint32_t ipv4;
 
 typedef struct station{
 	mac addr_mac;
-	ip addr_mac;
+	ipv4 addr_mac;
 } station;
 
 typedef struct switch{
@@ -18,7 +18,7 @@ typedef struct switch{
 } switch;
 
 
-void afficher_ip(ip *addr);
+void afficher_ipv4(ipv4 *addr);
 
 void afficher_mac(mac *addr);
 
