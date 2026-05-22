@@ -1,4 +1,7 @@
 #include "reseau.h"
+#include <stdlib.h>
+#include <stdio.h>
+
 
 int main()
 {
@@ -9,6 +12,11 @@ int main()
     if (fichier != NULL)
     {
         // On peut lire et écrire dans le fichier
+        int carac = fgetc(fichier);
+        printf("%c", carac);
+
+        carac = fgetc(fichier);
+        printf("%c\n", carac);
         fclose(fichier);
     }
     else
