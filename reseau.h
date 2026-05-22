@@ -1,9 +1,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-typedef uint32_t mac;
+#define MAX_ENTREES 64
 
-typedef uint32_t ipv4;
+typedef uint8_t mac[6];
+
+typedef uint8_t ipv4[4];
 
 typedef struct station{
 	mac addr_mac;
@@ -16,6 +18,16 @@ typedef struct switch{
 	size_t priorite_stp;
 	mac table_comm[];
 } switch;
+
+typedef struct {
+	mac addr_mac;
+	size_t port;
+}EntreeTable
+
+typedef struct {
+	EntreeTable entree;
+	size_t nb_entrees[MAX_ENTREES];
+}TableCommutation
 
 
 void afficher_ipv4(ipv4 *addr);
