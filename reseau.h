@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 #define MAX_ENTREES 64
 
@@ -9,25 +10,25 @@ typedef uint8_t ipv4[4];
 
 typedef struct station{
 	mac addr_mac;
-	ipv4 addr_mac;
+	ipv4 addr_ip;
 } station;
 
 typedef struct switch{
 	mac addr_mac;
 	size_t nb_ports;
 	size_t priorite_stp;
-	mac table_comm[];
+	TableCommutation table_comm;
 } switch;
 
 typedef struct {
 	mac addr_mac;
 	size_t port;
-}EntreeTable
+}EntreeTable;
 
 typedef struct {
-	EntreeTable entree;
-	size_t nb_entrees[MAX_ENTREES];
-}TableCommutation
+	EntreeTable entree[MAX_ENTREES];
+	size_t nb_entrees;
+}TableCommutation;
 
 
 void afficher_ipv4(ipv4 *addr);
