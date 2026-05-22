@@ -20,20 +20,17 @@ typedef struct EntreeTable
         size_t port;
 } EntreeTable;
 
-typedef struct TableCommutation
-{
-        EntreeTable entree[MAX_ENTREES];
-        size_t nb_entrees;
-} TableCommutation;
+typedef struct TableCommutation{
+	EntreeTable entree[MAX_ENTREES];
+	size_t nb_entrees;
+}TableCommutation;
 
-typedef struct commutateur
-{
+typedef struct sw{
 	mac addr_mac;
 	size_t nb_ports;
 	size_t priorite_stp;
 	TableCommutation table_comm;
-} commutateur;
-
+} sw;
 
 void afficher_ipv4(ipv4 *addr);
 
@@ -41,4 +38,4 @@ void afficher_mac(mac *addr);
 
 void afficher_station(station *st);
 
-void afficher_switch(commutateur *sw);
+void afficher_switch(sw *sw);
