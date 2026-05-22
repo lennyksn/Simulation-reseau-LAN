@@ -10,7 +10,7 @@ typedef uint8_t ipv4[4];
 
 typedef struct station{
 	mac addr_mac;
-	ipv4 addr_ip;
+	ipv4 addr_ipv4;
 } station;
 
 typedef struct switch{
