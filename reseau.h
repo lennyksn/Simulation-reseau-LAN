@@ -20,12 +20,12 @@ typedef struct switch{
 	TableCommutation table_comm;
 } switch;
 
-typedef struct {
+typedef struct EntreeTable{
 	mac addr_mac;
 	size_t port;
 }EntreeTable;
 
-typedef struct {
+typedef struct TableCommutation{
 	EntreeTable entree[MAX_ENTREES];
 	size_t nb_entrees;
 }TableCommutation;
