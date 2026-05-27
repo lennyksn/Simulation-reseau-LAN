@@ -41,4 +41,4 @@ void afficher_switch(sw *sw);
 
 void convertir_mac(mac m, char *chaine);
 
-void convertir_ip(ip i, char *chaine);
+void convertir_ip(ipv4 i, char *chaine);
