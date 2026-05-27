@@ -33,3 +33,7 @@ void afficher_mac(mac *addr);
 void afficher_station(station *st);
 
 void afficher_switch(sw *sw);
+
+void convertir_mac(mac m, char *chaine);
+
+void convertir_ip(ip i, char *chaine);
