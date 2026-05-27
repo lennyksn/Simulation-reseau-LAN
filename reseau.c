@@ -17,7 +17,7 @@ void afficher_station(station *st)
 
 }
 
-void afficher_switch(switch *sw)
+void afficher_switch(sw *sw)
 {
 
 }
