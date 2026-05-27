@@ -14,6 +14,11 @@ typedef struct station
 	ipv4 addr_ipv4;
 } station;
 
+typedef struct EntreeTable{
+	mac addr_mac;
+	ipv4 addr_ipv4;
+}EntreeTable;
+
 typedef struct TableCommutation{
 	EntreeTable entree[MAX_ENTREES];
 	size_t nb_entrees;
@@ -33,3 +38,7 @@ void afficher_mac(mac *addr);
 void afficher_station(station *st);
 
 void afficher_switch(sw *sw);
+
+void convertir_mac(mac m, char *chaine);
+
+void convertir_ip(ipv4 i, char *chaine);

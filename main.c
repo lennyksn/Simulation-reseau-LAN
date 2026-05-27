@@ -43,5 +43,9 @@ int main()
 
     afficher_ipv4(&adresse);
 
+    mac addr_mc = {180, 109, 131, 221, 206, 73};
+
+    afficher_mac(&addr_mc);
+
     return 0;
 }
