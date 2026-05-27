@@ -17,11 +17,6 @@ void afficher_ipv4(ipv4 *addr)
     printf("\n");
 }
 
-void afficher_mac(mac *addr)
-{
-
-}
-
 void afficher_station(station *st)
 {
 
