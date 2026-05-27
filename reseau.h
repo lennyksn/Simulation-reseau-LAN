@@ -20,11 +20,6 @@ typedef struct EntreeTable
         size_t port;
 } EntreeTable;
 
-typedef struct EntreeTable{
-	mac addr_mac;
-	size_t port;
-}EntreeTable;
-
 typedef struct TableCommutation{
 	EntreeTable entree[MAX_ENTREES];
 	size_t nb_entrees;
