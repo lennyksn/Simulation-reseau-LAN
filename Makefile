@@ -1,20 +1,31 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude
+TARGET_EXEC ?= m23
 
-SRC = $(wildcard src/*.c)
-OBJ = $(SRC:.c=.o)
-BIN = reseau
+BUILD_DIR ?= ./build
+TARGET_DIR ?= ./bin
+SRC_DIRS ?= .
 
-all: $(BIN)
+SRCS := $(shell find $(SRC_DIRS) -name "*.c")
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
 
-$(BIN): $(OBJ) main.o
-	$(CC) $(CFLAGS) -o $@ $^
+INC_DIRS := $(shell find $(SRC_DIRS) -type d)
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $
+CFLAGS ?= $(INC_FLAGS) -MMD -MP -O3 -Wall -Wextra -Wno-unused-parameter
 
-main.o: main.c
-	$(CC) $(CFLAGS) -c -o main.o main.c
+$(TARGET_DIR)/$(TARGET_EXEC): $(OBJS)
+	$(MKDIR_P) $(dir $@)
+	$(CC) $(OBJS) -o $@ $(LDFLAGS)
+
+$(BUILD_DIR)/%.c.o: %.c
+	$(MKDIR_P) $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: clean
 
 clean:
-	rm -f src/*.o main.o $(BIN)
+	$(RM) -r $(BUILD_DIR) $(TARGET_DIR)
+
+-include $(DEPS)
+
+MKDIR_P ?= mkdir -p

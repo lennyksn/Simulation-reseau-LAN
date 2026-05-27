@@ -14,6 +14,11 @@ typedef struct station
 	ipv4 addr_ipv4;
 } station;
 
+typedef struct EntreeTable{
+	mac addr_mac;
+	ipv4 addr_ipv4;
+}EntreeTable;
+
 typedef struct TableCommutation{
 	EntreeTable entree[MAX_ENTREES];
 	size_t nb_entrees;
