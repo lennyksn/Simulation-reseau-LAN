@@ -14,12 +14,6 @@ typedef struct station
 	ipv4 addr_ipv4;
 } station;
 
-typedef struct EntreeTable
-{
-        mac addr_mac;
-        size_t port;
-} EntreeTable;
-
 typedef struct EntreeTable{
 	mac addr_mac;
 	size_t port;
