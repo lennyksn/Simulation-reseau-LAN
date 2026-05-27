@@ -6,7 +6,7 @@
 
 int main()
 {
-    FILE* fichier = NULL;
+    /*FILE* fichier = NULL;
 
     fichier = fopen("mylan_no_cycle.lan", "r");
 
@@ -24,7 +24,11 @@ int main()
     {
         // On affiche un message d'erreur si on veut
         printf("Impossible d'ouvrir le fichier test.txt");
-    }
+    }*/
+
+    ipv4 adresse = {192, 168, 1, 1};
+
+    afficher_ipv4(&adresse);
 
     return 0;
 }
