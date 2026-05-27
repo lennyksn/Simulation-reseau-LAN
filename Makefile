@@ -1,16 +1,31 @@
-FLAGS=-Wall -Wextra -Wno-unused-parameter
-CC=gcc
+TARGET_EXEC ?= m23
 
-all: main
+BUILD_DIR ?= ./build
+TARGET_DIR ?= ./bin
+SRC_DIRS ?= .
 
-main: main.o tpn.o
-	$(CC) $(FLAGS) -o main main.o tpn.o
+SRCS := $(shell find $(SRC_DIRS) -name "*.c")
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
 
-main.o: main.c tpn.h
-	$(CC) $(FLAGS) -c main.c
+INC_DIRS := $(shell find $(SRC_DIRS) -type d)
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-tpn.o: tpn.c tpn.h
-	$(CC) $(FLAGS) -c tpn.c
+CFLAGS ?= $(INC_FLAGS) -MMD -MP -O3 -Wall -Wextra -Wno-unused-parameter
+
+$(TARGET_DIR)/$(TARGET_EXEC): $(OBJS)
+	$(MKDIR_P) $(dir $@)
+	$(CC) $(OBJS) -o $@ $(LDFLAGS)
+
+$(BUILD_DIR)/%.c.o: %.c
+	$(MKDIR_P) $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: clean
 
 clean:
-	rm -f *.o main
+	$(RM) -r $(BUILD_DIR) $(TARGET_DIR)
+
+-include $(DEPS)
+
+MKDIR_P ?= mkdir -p
