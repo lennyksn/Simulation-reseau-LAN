@@ -49,5 +49,22 @@ int main()
         printf("Impossible d'ouvrir le fichier test.txt");
     }
 
+    ipv4 adresse = {192, 168, 1, 1};
+
+    afficher_ipv4(&adresse);
+
+    mac addr_mc = {180, 109, 131, 221, 206, 73};
+
+    afficher_mac(&addr_mc);
+
+    trame t1;
+
+    t1.type[0] = 0x08;
+    t1.type[1] = 0x00;
+
+    printf("\n%d + %d\n", t1.type[0], t1.type[1]);
+    
+    afficher_trame_humain(&t1);
+
     return 0;
 }

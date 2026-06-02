@@ -13,12 +13,28 @@ void afficher_mac(mac *addr){
 
 void afficher_station(station *st)
 {
-
+    printf("Station st%zu :\n",st->id);
+    printf("   MAC : ");
+    afficher_mac(st->addr_mac);
+    printf("\n   IP : ");
+    afficher_ipv4(st->addr_ipv4);
+    printf("\n");
 }
 
 void afficher_switch(sw *sw)
 {
-
+    printf("Switch sw%zu :\n",sw->id);
+    printf("   MAC :");
+    afficher_mac(sw->addr_mac);
+    printf("\n   Ports : %zu\n",sw->nb_ports);
+    printf("\n   Priorité : %zu\n",sw->priorite_stp);
+    printf("\n   Table de commutation (%zu entrées)",sw->table_comm.nb_entrees);
+    for (int i = 0; i < sw->table_comm.nb_entrees; i++)
+    {
+	    printf("Port n°%zu : ",sw->table_comm.entrees[i].port);
+        afficher_mac(sw->table_comm.entrees[i].addr_mac);
+	    printf("\n");
+    }	
 }
 
 void convertir_mac(mac m, char *chaine)
@@ -29,4 +45,18 @@ void convertir_mac(mac m, char *chaine)
 void convertir_ip(ipv4 i, char *chaine)
 {
  sscanf(chaine,"%hhu:%hhu:%hhu:%hhu:%hhu:%hhu",&i[0],&i[1],&i[2],&i[3],&i[4],&i[5]);
+}
+
+char* convertir_type_trame(trame *t){
+    if(t->type[0] == 0x08 && t->type[1] == 0x00){
+        return "Paquet IPV4";
+    }
+}
+
+void afficher_trame_humain(trame *t){
+    /*printf("source : ");
+    afficher_mac(&t->source);
+    printf("\ndestination : ");
+    afficher_mac(&t->destination);*/
+    printf("type : %s", convertir_type_trame(t));
 }
