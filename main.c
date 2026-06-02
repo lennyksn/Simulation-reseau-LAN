@@ -31,11 +31,11 @@ int main()
             if (sscanf(ligne,"%*d;""%hhx:%hhx:%hhx:%hhx:%hhx:%hhx;""%hhu.%hhu.%hhu.%hhu", &mmac[0], &mmac[1], &mmac[2], &mmac[3], &mmac[4], &mmac[5], &iipv4[0], &iipv4[1], &iipv4[2], &iipv4[3]) == 10)
             {
                 mac addr_mc = {mmac[0], mmac[1], mmac[2], mmac[3], mmac[4], mmac[5]};
-                printf("Adresse MAC : ");
+                //printf("Adresse MAC : ");
                 afficher_mac(&addr_mc);
 
                 ipv4 addr_ipv4 = {iipv4[0], iipv4[1], iipv4[2], iipv4[3]};
-                printf("Adresse IP : ");
+                //printf("Adresse IP : ");
                 afficher_ipv4(&addr_ipv4);
                 printf("\n");
             }

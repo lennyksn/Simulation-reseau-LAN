@@ -31,8 +31,8 @@ void afficher_switch(sw *sw)
     printf("\n   Table de commutation (%zu entrées)",sw->table_comm.nb_entrees);
     for (int i = 0; i < sw->table_comm.nb_entrees; i++)
     {
-	    printf("Port n°%zu : ",sw->table_comm.entrees[i].port);
-        afficher_mac(sw->table_comm.entrees[i].addr_mac);
+	    printf("Port n°%zu : ",sw->table_comm.entree[i].port);
+        afficher_mac(sw->table_comm.entree[i].addr_mac);
 	    printf("\n");
     }	
 }

@@ -36,20 +36,20 @@ typedef struct sw{
 	TableCommutation table_comm;
 } sw;
 
-typedef struct reseau{
-	sw switchs[MAX_SWITCH];
-	station stations[MAX_STATION];
-	lien liens[MAX_LIEN];
-	size_t nb_switch;
-	size_t nb_station;
-	size_t nb_lien;
-}reseau;
-
 typedef struct lien{
 	size_t eq1;
 	size_t eq2;
 	size_t cout;
 }lien;
+
+typedef struct reseau{
+	sw switchs[MAX_SWITCH];
+	station stations[MAX_STATION];
+	lien liens[MAX_LIENS];
+	size_t nb_switch;
+	size_t nb_station;
+	size_t nb_lien;
+}reseau;
 
 typedef struct trame{
 	uint8_t preambule[7];
