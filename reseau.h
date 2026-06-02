@@ -70,6 +70,17 @@ typedef struct reseau{
 
 
 
+typedef struct trame{
+	uint8_t preambule[7];
+	uint8_t sfd[1];
+	uint8_t destination[6];
+	uint8_t source[6];
+	uint8_t type[2];
+	uint8_t donnees[1500];
+	uint8_t bourrage[46];
+	uint8_t fcs[4];
+} trame;
+
 void afficher_ipv4(ipv4 *addr);
 
 void afficher_mac(mac *addr);
@@ -83,3 +94,5 @@ void afficher_reseau(reseau *r);
 void convertir_mac(mac m, char *chaine);
 
 void convertir_ip(ipv4 i, char *chaine);
+
+void afficher_trame_humain(trame *t);

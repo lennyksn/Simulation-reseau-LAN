@@ -31,10 +31,10 @@ void afficher_switch(sw *sw)
     printf("\n   Table de commutation (%zu entrées)",sw->table_comm.nb_entrees);
     for (int i = 0; i < sw->table_comm.nb_entrees; i++)
     {
-	printf("Port n°%zu : ",sw->table_comm.entrees[i].port);
-    afficher_mac(sw->table_comm.entrees[i].addr_mac);
-	printf("\n");	
-    }
+	    printf("Port n°%zu : ",sw->table_comm.entrees[i].port);
+        afficher_mac(sw->table_comm.entrees[i].addr_mac);
+	    printf("\n");
+    }	
 }
 
 void convertir_mac(mac m, char *chaine)
@@ -45,4 +45,18 @@ void convertir_mac(mac m, char *chaine)
 void convertir_ip(ipv4 i, char *chaine)
 {
  sscanf(chaine,"%hhu:%hhu:%hhu:%hhu:%hhu:%hhu",&i[0],&i[1],&i[2],&i[3],&i[4],&i[5]);
+}
+
+char* convertir_type_trame(trame *t){
+    if(t->type[0] == 0x08 && t->type[1] == 0x00){
+        return "Paquet IPV4";
+    }
+}
+
+void afficher_trame_humain(trame *t){
+    /*printf("source : ");
+    afficher_mac(&t->source);
+    printf("\ndestination : ");
+    afficher_mac(&t->destination);*/
+    printf("type : %s", convertir_type_trame(t));
 }

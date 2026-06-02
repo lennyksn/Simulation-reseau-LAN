@@ -47,5 +47,14 @@ int main()
 
     afficher_mac(&addr_mc);
 
+    trame t1;
+
+    t1.type[0] = 0x08;
+    t1.type[1] = 0x00;
+
+    printf("\n%d + %d\n", t1.type[0], t1.type[1]);
+    
+    afficher_trame_humain(&t1);
+
     return 0;
 }
