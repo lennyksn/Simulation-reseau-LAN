@@ -6,17 +6,23 @@
 #define MAX_SWITCH 16
 #define MAX_STATION 64
 #define MAX_LIENS 128
+#define MAX_PORT 32
 
 typedef uint8_t mac[6];
 
 typedef uint8_t ipv4[4];
 
-typedef struct station
-{
-	mac addr_mac;
-	ipv4 addr_ipv4;
-	size_t id;
-} station;
+typedef enum etat_port{
+	INCONNU,
+	RACINE,
+	DESIGNE,
+	BLOQUE
+}etat_port;
+
+typedef struct port{
+	etat_port etat;
+	size_t cout;
+}port;
 
 typedef struct EntreeTable{
 	mac addr_mac;
@@ -32,9 +38,23 @@ typedef struct sw{
 	size_t id;
 	mac addr_mac;
 	size_t nb_ports;
+	port ports[MAX_PORT];
 	size_t priorite_stp;
 	TableCommutation table_comm;
 } sw;
+
+typedef struct station
+{
+	mac addr_mac;
+	ipv4 addr_ipv4;
+	size_t id;
+} station;
+
+typedef struct lien{
+	size_t eq1;
+	size_t eq2;
+	size_t cout;
+}lien;
 
 typedef struct reseau{
 	sw switchs[MAX_SWITCH];
@@ -45,11 +65,10 @@ typedef struct reseau{
 	size_t nb_lien;
 }reseau;
 
-typedef struct lien{
-	size_t eq1;
-	size_t eq2;
-	size_t cout;
-}lien;
+
+
+
+
 
 void afficher_ipv4(ipv4 *addr);
 
@@ -58,6 +77,8 @@ void afficher_mac(mac *addr);
 void afficher_station(station *st);
 
 void afficher_switch(sw *sw);
+
+void afficher_reseau(reseau *r);
 
 void convertir_mac(mac m, char *chaine);
 

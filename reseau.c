@@ -32,8 +32,9 @@ void afficher_switch(sw *sw)
     for (int i = 0; i < sw->table_comm.nb_entrees; i++)
     {
 	printf("Port n°%zu : ",sw->table_comm.entrees[i].port);
-        afficher_mac(sw->table_comm.entrees[i].addr_mac);
+    afficher_mac(sw->table_comm.entrees[i].addr_mac);
 	printf("\n");	
+    }
 }
 
 void convertir_mac(mac m, char *chaine)
