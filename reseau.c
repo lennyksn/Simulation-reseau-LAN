@@ -58,5 +58,5 @@ void afficher_trame_humain(trame *t){
     afficher_mac(&t->source);
     printf("\ndestination : ");
     afficher_mac(&t->destination);*/
-    printf("type : %s", convertir_type_trame(t));
+    printf("type : %s\n", convertir_type_trame(t));
 }
