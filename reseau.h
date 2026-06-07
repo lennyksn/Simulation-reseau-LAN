@@ -82,6 +82,13 @@ typedef struct trame{
 	uint8_t fcs[4];
 } trame;
 
+typedef struct bpdu{
+    mac    addr_racine;      
+    size_t priorite_racine; 
+    size_t cout_racine;     
+    mac    addr_emetteur;   
+} bpdu;
+
 void afficher_ipv4(ipv4 *addr);
 
 void afficher_mac(mac *addr);
