@@ -31,8 +31,8 @@ void afficher_switch(sw *sw)
     printf("\n   Table de commutation (%zu entrées)",sw->table_comm.nb_entrees);
     for (int i = 0; i < sw->table_comm.nb_entrees; i++)
     {
-	    printf("Port n°%zu : ",sw->table_comm.entrees[i].port);
-        afficher_mac(sw->table_comm.entrees[i].addr_mac);
+	    printf("Port n°%zu : ",sw->table_comm.entree[i].port);
+        afficher_mac(sw->table_comm.entree[i].addr_mac);
 	    printf("\n");
     }	
 }
@@ -82,5 +82,5 @@ void afficher_trame_humain(trame *t){
     afficher_mac(&t->source);
     printf("\ndestination : ");
     afficher_mac(&t->destination);*/
-    printf("type : %s", convertir_type_trame(t));
+    printf("type : %s\n", convertir_type_trame(t));
 }

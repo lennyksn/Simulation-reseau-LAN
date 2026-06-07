@@ -43,6 +43,12 @@ typedef struct sw{
 	TableCommutation table_comm;
 } sw;
 
+typedef struct lien{
+	size_t eq1;
+	size_t eq2;
+	size_t cout;
+}lien;
+
 typedef struct station
 {
 	mac addr_mac;
@@ -50,11 +56,6 @@ typedef struct station
 	size_t id;
 } station;
 
-typedef struct lien{
-	size_t eq1;
-	size_t eq2;
-	size_t cout;
-}lien;
 
 typedef struct reseau{
 	sw switchs[MAX_SWITCH];
