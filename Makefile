@@ -1,4 +1,4 @@
-TARGET_EXEC ?= m23
+TARGET_EXEC ?= sae23
 
 BUILD_DIR ?= ./build
 TARGET_DIR ?= ./bin

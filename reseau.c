@@ -37,6 +37,30 @@ void afficher_switch(sw *sw)
     }	
 }
 
+void afficher_reseau(reseau r*)
+{
+    printf("Reseau :");
+    printf("%zu switch(s), %zu station(s), %zu lien(s)\n\n", r->nb_switch, r->nb_station, r->nb_lien);
+
+    for (int i = 0; i < r->nb_switch; i++) {
+        afficher_switch(&r->switchs[i]);
+        printf("\n");
+    }
+
+    for (int i = 0; i < r->nb_station; i++) {
+        afficher_station(&r->stations[i]);
+        printf("\n");
+    }
+
+    printf("Liens :\n");
+    for (int i = 0; i < r->nb_lien; i++) {
+        printf("  %zu <-> %zu (coût : %zu)\n",
+            r->liens[i].eq1,
+            r->liens[i].eq2,
+            r->liens[i].cout);
+    }  
+}
+
 void convertir_mac(mac m, char *chaine)
 {
  sscanf(chaine,"%hhx:%hhx:%hhx:%hhx:%hhx:%hhx",&m[0],&m[1],&m[2],&m[3],&m[4],&m[5]);	

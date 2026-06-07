@@ -59,7 +59,7 @@ typedef struct lien{
 typedef struct reseau{
 	sw switchs[MAX_SWITCH];
 	station stations[MAX_STATION];
-	lien liens[MAX_LIEN];
+	lien liens[MAX_LIENS];
 	size_t nb_switch;
 	size_t nb_station;
 	size_t nb_lien;
