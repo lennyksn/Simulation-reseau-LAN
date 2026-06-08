@@ -37,7 +37,7 @@ void afficher_switch(sw *sw)
     }	
 }
 
-void afficher_reseau(reseau r*)
+void afficher_reseau(reseau *r)
 {
     printf("Reseau :");
     printf("%zu switch(s), %zu station(s), %zu lien(s)\n\n", r->nb_switch, r->nb_station, r->nb_lien);
