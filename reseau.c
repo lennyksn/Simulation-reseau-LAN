@@ -84,3 +84,45 @@ void afficher_trame_humain(trame *t){
     afficher_mac(&t->destination);*/
     printf("type : %s\n", convertir_type_trame(t));
 }
+
+bpdu initialize_bpdu(sw *s)
+{
+    bpdu b;
+    // je me crois racine donc ma priorité et ma MAC comme racine
+    memcpy(b.addr_racine, s->addr_mac, 6);
+    b.priorite_racine = s->priorite_stp;
+    b.cout_racine = 0;  // coût 0 car je me crois racine
+    memcpy(b.addr_emetteur, s->addr_mac, 6);
+    return b;
+}
+
+void initialize_stp(reseau *r)
+{
+    for (size_t i = 0; i < r->nb_switch; i++)
+    {
+        r->switchs[i].meilleur_bpdu = initialize_bpdu(&r->switchs[i]);
+    }
+}
+
+bool bpdu_meilleur(bpdu *b1, bpdu *b2) {
+    if (b1->priorite_racine != b2->priorite_racine)
+        return b1->priorite_racine < b2->priorite_racine;
+    
+    int cmp = memcmp(b1->addr_racine, b2->addr_racine, 6);
+    if (cmp != 0)
+        return cmp < 0;
+    
+    return b1->cout_racine < b2->cout_racine;
+}
+
+int traiter_bpdu(sw *s, bpdu *recu, size_t port_recu, size_t cout_lien) {
+    bpdu candidat = *recu;
+    candidat.cout_racine += cout_lien;  // on ajoute le coût du lien
+    
+    if (bpdu_meilleur(&candidat, &s->meilleur_bpdu)) {
+        s->meilleur_bpdu = candidat;
+        s->ports[port_recu].etat = RACINE;
+        return 1;  // changement détecté
+    }
+    return 0;  // pas de changement
+}

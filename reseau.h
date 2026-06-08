@@ -41,6 +41,7 @@ typedef struct sw{
 	port ports[MAX_PORT];
 	size_t priorite_stp;
 	TableCommutation table_comm;
+	bpdu meilleur_bpdu;
 } sw;
 
 typedef struct lien{
@@ -104,3 +105,11 @@ void convertir_mac(mac m, char *chaine);
 void convertir_ip(ipv4 i, char *chaine);
 
 void afficher_trame_humain(trame *t);
+
+bpdu initialize_bpdu(sw *s);
+
+void initialize_stp(reseau *r);
+
+bool bpdu_meilleur(bpdu *b1, bpdu *b2);
+
+int traiter_bpdu(sw *s, bpdu *recu, size_t port_recu, size_t cout_lien)
